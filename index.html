@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Λ M O R Λ | C U R A D O R I A  D E  M O D A</title>
+  
+  <!-- Ícone da aba do navegador (Favicon SVG de Alta Qualidade e Cor Viva embutido) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'><rect width='500' height='500' fill='%232d061c'/><rect x='150' y='120' width='200' height='260' fill='none' stroke='%23FFC800' stroke-width='24'/><path d='M 250 200 L 200 300 L 222 300 L 250 244 L 278 300 L 300 300 Z' fill='%23FFC800'/></svg>">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #030408;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+    .hero-container {
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      overflow: hidden;
+    }
+    .hero-bg, .hero-content {
+      will-change: transform, opacity;
+      transition: transform 0.05s ease-out, opacity 0.05s ease-out;
+    }
+    .glow-effect {
+      box-shadow: 0 0 50px -10px rgba(194, 37, 114, 0.2);
+    }
+    /* Ocultar barra de rolagem mantendo a navegação por scroll */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    
+    /* Paleta e Utilitários de Cor Amora */
+    .bg-amora {
+      background-color: #4a0e2e;
+    }
+    .bg-amora:hover {
+      background-color: #63123d;
+    }
+    .text-amora {
+      color: #c22572;
+    }
+    .text-amora-light {
+      color: #e273a9;
+    }
+    .border-amora {
+      border-color: #c22572;
+    }
+    .border-amora-dark {
+      border-color: #4a0e2e;
+    }
+    .shadow-amora {
+      box-shadow: 0 4px 20px rgba(99, 18, 61, 0.4);
+    }
+    .text-amora-brand {
+      color: #c22572;
+      text-shadow: 0 0 15px rgba(194, 37, 114, 0.4);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-[#4a0e2e] selection:text-white">
+
+  <!-- Header / Navigation Adaptado para Celulares e Computadores -->
+  <header class="fixed top-0 left-0 w-full z-50 mix-blend-difference px-4 sm:px-8 py-3 sm:py-5 flex justify-between items-center tracking-widest uppercase">
+    
+    <!-- Bloco com o Logótipo em Vetor + Nome + Subtítulo -->
+    <div class="flex items-center space-x-2 sm:space-x-3">
+      <!-- Ícone do Logótipo em SVG -->
+      <svg class="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="500" height="500" fill="#2d061c" rx="40"/>
+        <rect x="150" y="120" width="200" height="260" fill="none" stroke="#FFC800" stroke-width="24"/>
+        <path d="M 250 200 L 200 300 L 222 300 L 250 244 L 278 300 L 300 300 Z" fill="#FFC800"/>
+      </svg>
+
+      <div class="flex flex-col items-start leading-tight">
+        <a href="#" class="font-cinzel text-base sm:text-xl tracking-[0.25em] sm:tracking-[0.3em] font-bold text-amora-brand hover:text-amora-light transition-colors">
+          Λ M O R Λ
+        </a>
+        <span class="text-[9px] sm:text-xs tracking-[0.12em] sm:tracking-[0.2em] text-white font-medium lowercase pt-0.5 capitalize drop-shadow-sm truncate max-w-[200px] sm:max-w-none">
+          Há mais de 10 anos no mercado
+        </span>
+      </div>
+    </div>
+
+    <!-- Navegação para Desktop / Telas Grandes -->
+    <nav class="hidden md:flex space-x-8 lg:space-x-10 text-xs text-gray-300">
+      <a href="#about-brand" class="hover:text-amora-light transition-colors">Sobre</a>
+      <a href="#about" class="hover:text-amora-light transition-colors">Conceito</a>
+      <a href="#collection" class="hover:text-amora-light transition-colors">Coleção Noivas</a>
+      <a href="#inventory" class="hover:text-amora-light transition-colors">Estoque & Peças</a>
+    </nav>
+
+    <!-- Botão Hambúrguer para Celular -->
+    <button id="mobile-menu-btn" aria-label="Abrir Menu" class="md:hidden p-2 text-white hover:text-amora-light focus:outline-none z-50">
+      <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </header>
+
+  <!-- Menu Suspenso Mobile -->
+  <div id="mobile-menu" class="fixed inset-0 bg-[#030408]/95 backdrop-blur-xl z-40 hidden flex-col justify-center items-center space-y-8 text-center text-sm tracking-[0.3em] uppercase md:hidden transition-all duration-300">
+    <a href="#about-brand" class="mobile-nav-link text-gray-200 hover:text-amora-light py-2 border-b border-white/10 w-4/5">Sobre</a>
+    <a href="#about" class="mobile-nav-link text-gray-200 hover:text-amora-light py-2 border-b border-white/10 w-4/5">Conceito</a>
+    <a href="#collection" class="mobile-nav-link text-gray-200 hover:text-amora-light py-2 border-b border-white/10 w-4/5">Coleção Noivas</a>
+    <a href="#inventory" class="mobile-nav-link text-gray-200 hover:text-amora-light py-2 border-b border-white/10 w-4/5">Estoque & Peças</a>
+    <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20na%20Maison%20AMORA." target="_blank" class="bg-amora text-white px-8 py-3 border border-amora/40 text-xs tracking-[0.2em] rounded-sm mt-4">Atendimento WhatsApp</a>
+  </div>
+
+  <!-- Wrapper para o Scroll Parallax Rápido -->
+  <div class="relative h-[120vh] w-full" id="hero-wrapper">
+    <section class="hero-container flex flex-col justify-center items-center text-center px-4">
+      
+      <!-- Imagem de Fundo 1 (Hero: CASAL CASANDO) -->
+      <div id="hero-bg" class="hero-bg absolute inset-0 z-0 opacity-60 scale-100">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920&q=80" alt="Casal no casamento - Λ M O R Λ" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#030408]/70 via-[#030408]/30 to-[#030408]"></div>
+      </div>
+
+      <!-- Conteúdo Principal do Hero -->
+      <div id="hero-content" class="hero-content relative z-10 max-w-4xl space-y-6">
+        <p class="text-xs uppercase tracking-[0.6em] text-amora-light font-light">Haute Couture Bridal</p>
+        
+        <h1 class="text-4xl md:text-6xl lg:text-7xl tracking-widest uppercase font-bold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-[#f4b3d2] to-slate-300 leading-tight drop-shadow-[0_4px_25px_rgba(194,37,114,0.3)]">
+          CURATORIA DE MODA
+        </h1>
+        
+        <p class="text-sm md:text-base font-extralight tracking-widest text-gray-300 max-w-2xl mx-auto pt-4 leading-relaxed">
+          O casamento entre a gravidade estelar e o design nupcial. Uma coleção de noivas que transforma vibrações cósmicas em alta costura escultural e tridimensional.
+        </p>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div id="scroll-indicator" class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 opacity-60 transition-opacity duration-200">
+        <span class="text-[10px] tracking-widest uppercase text-gray-400">Descer</span>
+        <div class="w-[1px] h-10 bg-gradient-to-b from-[#c22572] to-transparent"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Conteúdo Principal -->
+  <div class="relative z-20 bg-[#030408]">
+
+    <!-- Seção: Sobre a Página / Marca -->
+    <section id="about-brand" class="py-28 px-6 md:px-20 max-w-5xl mx-auto text-center border-b border-white/5">
+      <p class="text-xs tracking-[0.5em] uppercase text-amora mb-3">Manifesto & Origem</p>
+      <h2 class="text-3xl md:text-5xl tracking-widest text-slate-100 font-light uppercase mb-8">Sobre a <span class="text-amora font-semibold">Λ M O R Λ</span></h2>
+      <div class="w-16 h-[1px] bg-[#c22572] mx-auto mb-10"></div>
+      
+      <p class="text-gray-300 text-sm md:text-base leading-relaxed font-light max-w-3xl mx-auto mb-6">
+        Fundada sob a premissa da elegância futurista, a <strong class="text-amora font-semibold">Maison Λ M O R Λ</strong> nasceu para desafiar os padrões tradicionais da alta costura nupcial. Combinamos técnicas artesanais ancestrais com inovação têxtil tridimensional para vesti-la em seu momento mais memorável.
+      </p>
+      <p class="text-gray-400 text-xs md:text-sm leading-relaxed font-light max-w-2xl mx-auto">
+        Cada peça do nosso acervo é concebida como uma obra de arte única — tecida em seda, organza escultural e detalhes luminescentes inspirados no cosmos.
+      </p>
+    </section>
+
+    <!-- Conceito / About -->
+    <section id="about" class="py-32 px-6 md:px-20 max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div class="space-y-6">
+          <p class="text-xs tracking-[0.4em] uppercase text-amora">A Noiva Futurista</p>
+          <h2 class="text-3xl md:text-4xl tracking-widest text-slate-100 font-light uppercase">
+            O Casamento Cósmico
+          </h2>
+          <div class="w-12 h-[1px] bg-[#c22572]"></div>
+          <p class="text-gray-400 text-sm leading-relaxed font-light">
+            Reescrevendo a tradição nupcial através da ciência e do movimento. A coleção de casamentos da <strong class="text-amora font-semibold">AMORA</strong> reinterpreta o clássico vestido branco em formas orgânicas, usando pregas multidimensionais e transparências estelares que flutuam ao redor do corpo.
+          </p>
+          <p class="text-gray-400 text-sm leading-relaxed font-light">
+            Desenvolvidos com tecnologia de impressão 3D, corte a laser e as mais finas camadas de organza e tule, cada vestido é uma celebração da matéria invisível e da ressonância cósmica.
+          </p>
+        </div>
+        <div class="relative">
+          <div class="aspect-[3/4] overflow-hidden rounded-sm glow-effect border border-white/10">
+            <!-- IMAGEM DO CASAMENTO CÓSMICO -->
+            <img src="casamento-cosmico.jpg" alt="Noiva Haute Couture Conceito" class="w-full h-full object-cover contrast-125 hover:scale-105 transition-transform duration-700">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeria da Coleção -->
+    <section id="collection" class="py-20 px-6 md:px-12 bg-[#060810]/50 border-y border-white/5">
+      <div class="text-center max-w-2xl mx-auto mb-20 space-y-3">
+        <p class="text-xs tracking-[0.4em] uppercase text-amora">Estética Nupcial</p>
+        <h2 class="text-3xl md:text-4xl tracking-widest uppercase">Vestidos de Noiva em Destaque</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        
+        <!-- Look 01 -->
+        <div class="group cursor-pointer">
+          <div class="aspect-[2/3] overflow-hidden bg-neutral-900 border border-white/5 relative">
+            <img src="look1.jpg" alt="Vestido de Noiva Look 1" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+              <span class="text-xs uppercase tracking-widest text-amora-light">Vestido de Casamento — Plasma Halo</span>
+            </div>
+          </div>
+          <div class="mt-4 flex justify-between items-center text-xs tracking-wider text-gray-400">
+            <span>PLASMA HALO NOIVA</span>
+            <span class="text-gray-600">LOOK 01</span>
+          </div>
+        </div>
+
+        <!-- Look 02 -->
+        <div class="group cursor-pointer md:mt-12">
+          <div class="aspect-[2/3] overflow-hidden bg-neutral-900 border border-white/5 relative">
+            <img src="look2.jpg" alt="Vestido de Noiva Look 2" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+              <span class="text-xs uppercase tracking-widest text-amora-light">Vestido de Casamento — Fractal Universe</span>
+            </div>
+          </div>
+          <div class="mt-4 flex justify-between items-center text-xs tracking-wider text-gray-400">
+            <span>FRACTAL UNIVERSE NOIVA</span>
+            <span class="text-gray-600">LOOK 02</span>
+          </div>
+        </div>
+
+        <!-- Look 03 -->
+        <div class="group cursor-pointer">
+          <div class="aspect-[2/3] overflow-hidden bg-neutral-900 border border-white/5 relative">
+            <img src="look3.jpg" alt="Vestido de Noiva Look 3" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+              <span class="text-xs uppercase tracking-widest text-amora-light">Vestido de Casamento — Resonance Wave</span>
+            </div>
+          </div>
+          <div class="mt-4 flex justify-between items-center text-xs tracking-wider text-gray-400">
+            <span>RESONANCE WAVE NOIVA</span>
+            <span class="text-gray-600">LOOK 03</span>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- Seção: Estoque em Carrossel Duplo -->
+    <section id="inventory" class="py-24 px-4 sm:px-8 md:px-12 max-w-[1400px] mx-auto space-y-20">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <p class="text-xs tracking-[0.4em] uppercase text-amora">Disponível em Acervo</p>
+        <h2 class="text-3xl md:text-4xl tracking-widest uppercase">Estoque & Alta Costura</h2>
+      </div>
+
+      <!-- LINHA 01: VESTIDOS & VÉUS -->
+      <div class="space-y-4">
+        <div class="px-8 sm:px-12 md:px-16 flex justify-between items-end border-b border-white/10 pb-3">
+          <h3 class="text-sm tracking-[0.3em] uppercase text-amora-light font-medium">Linha 01 — Vestidos de Noiva & Véus</h3>
+          <span class="text-[11px] text-gray-500 tracking-widest uppercase">6 Peças Selecionadas</span>
+        </div>
+
+        <div class="relative px-8 sm:px-12 md:px-16">
+          <!-- Botão Esquerdo Linha 01 -->
+          <button id="scroll-left-1" aria-label="Anterior Linha 1" class="absolute -left-3 sm:-left-6 md:-left-12 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 border border-white/20 bg-black/90 text-amora flex items-center justify-center hover:border-amora hover:scale-110 transition-all shadow-2xl backdrop-blur-md rounded-full group">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 stroke-current transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21l-1.5-4.5m1.5 4.5l1.5-4.5m-1.5 4.5v-4.5" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 12a3 3 0 100-6 3 3 0 000 6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 14a3 3 0 100-6 3 3 0 000 6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 14a3 3 0 100-6 3 3 0 000 6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12l-2 0m2-2l-2 2 2 2" />
+            </svg>
+          </button>
+
+          <!-- Botão Direito Linha 01 -->
+          <button id="scroll-right-1" aria-label="Próximo Linha 1" class="absolute -right-3 sm:-right-6 md:-right-12 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 border border-white/20 bg-black/90 text-amora flex items-center justify-center hover:border-amora hover:scale-110 transition-all shadow-2xl backdrop-blur-md rounded-full group">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 stroke-current transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21l-1.5-4.5m1.5 4.5l1.5-4.5m-1.5 4.5v-4.5" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 12a3 3 0 100-6 3 3 0 000 6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 14a3 3 0 100-6 3 3 0 000 6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 14a3 3 0 100-6 3 3 0 000 6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 12l2 0m-2-2l2 2-2 2" />
+            </svg>
+          </button>
+
+          <!-- Container Deslizante - Linha 1 -->
+          <div id="inventory-container-1" class="flex space-x-6 overflow-x-auto scroll-smooth no-scrollbar py-4">
+
+            <!-- Slot 1.1 -->
+            <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-[#070913] border border-white/10 rounded-sm overflow-hidden group/card hover:border-amora/50 transition-all duration-500 flex flex-col justify-between flex-shrink-0">
+              <div>
+                <div class="aspect-[3/4] overflow-hidden relative">
+                  <img src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=800&q=80" alt="Vestido Sereia Stella" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700">
+                  <span class="absolute top-3 right-3 bg-black/80 text-[10px] tracking-widest uppercase px-3 py-1 border border-white/20 text-amora-light z-10">Em Estoque (1 un)</span>
+                </div>
+                <div class="p-5 space-y-2">
+                  <p class="text-[10px] tracking-widest text-amora uppercase">Coleção Astral</p>
+                  <h3 class="text-sm tracking-wider font-medium text-white uppercase">Vestido Sereia Stella</h3>
+                  <p class="text-xs text-gray-400 font-light">Seda Pura com bordado em cristais Swarovski.</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-2 flex justify-between items-center border-t border-white/5">
+                <span class="text-sm font-semibold text-amora-light">R$ 18.900</span>
+                <button class="text-[10px] tracking-widest uppercase border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black transition-all">Reservar</button>
+              </div>
+            </div>
+
+            <!-- Slot 1.2 -->
+            <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-[#070913] border border-white/10 rounded-sm overflow-hidden group/card hover:border-amora/50 transition-all duration-500 flex flex-col justify-between flex-shrink-0">
+              <div>
+                <div class="aspect-[3/4] overflow-hidden relative">
+                  <img src="https://images.unsplash.com/photo-1546804784-896d0d51710d?auto=format&fit=crop&w=800&q=80" alt="Vestido Minimal Lumina" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700">
+                  <span class="absolute top-3 right-3 bg-black/80 text-[10px] tracking-widest uppercase px-3 py-1 border border-white/20 text-amora-light z-10">Em Estoque (2 un)</span>
+                </div>
+                <div class="p-5 space-y-2">
+                  <p class="text-[10px] tracking-widest text-amora uppercase">Coleção Solstice</p>
+                  <h3 class="text-sm tracking-wider font-medium text-white uppercase">Vestido Minimal Lumina</h3>
+                  <p class="text-xs text-gray-400 font-light">Decote em V profundo e fenda fluida estruturada.</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-2 flex justify-between items-center border-t border-white/5">
+                <span class="text-sm font-semibold text-amora-light">R$ 14.500</span>
+                <button class="text-[10px] tracking-widest uppercase border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black transition-all">Reservar</button>
+              </div>
+            </div>
+
+            <!-- Slot 1.3 -->
+            <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-[#070913] border border-white/10 rounded-sm overflow-hidden group/card hover:border-amora/50 transition-all duration-500 flex flex-col justify-between flex-shrink-0">
+              <div>
+                <div class="aspect-[3/4] overflow-hidden relative">
+                  <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=80" alt="Véu Catedral Nebula" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700">
+                  <span class="absolute top-3 right-3 bg-black/80 text-[10px] tracking-widest uppercase px-3 py-1 border border-white/20 text-amora-light z-10">Em Estoque (3 un)</span>
+                </div>
+                <div class="p-5 space-y-2">
+                  <p class="text-[10px] tracking-widest text-amora uppercase">Acessórios Haute</p>
+                  <h3 class="text-sm tracking-wider font-medium text-white uppercase">Véu Catedral Nebula</h3>
+                  <p class="text-xs text-gray-400 font-light">3.5 metros em tule illusion com aplicação de pérolas.</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-2 flex justify-between items-center border-t border-white/5">
+                <span class="text-sm font-semibold text-amora-light">R$ 4.200</span>
+                <button class="text-[10px] tracking-widest uppercase border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black transition-all">Reservar</button>
+              </div>
+            </div>
+
+            <!-- Slot 1.4 -->
+            <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-[#070913] border border-white/10 rounded-sm overflow-hidden group/card hover:border-amora/50 transition-all duration-500 flex flex-col justify-between flex-shrink-0">
+              <div>
+                <div class="aspect-[3/4] overflow-hidden relative">
+                  <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=800&q=80" alt="Princesa Andromeda" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700">
+                  <span class="absolute top-3 right-3 bg-black/80 text-[10px] tracking-widest uppercase px-3 py-1 border border-white/20 text-amora-light z-10">Em Estoque (1 un)</span>
+                </div>
+                <div class="p-5 space-y-2">
+                  <p class="text-[10px] tracking-widest text-amora uppercase">Coleção Cósmica</p>
+                  <h3 class="text-sm tracking-wider font-medium text-white uppercase">Princesa Andromeda</h3>
+                  <p class="text-xs text-gray-400 font-light">Corset esculpido à mão com saia volumosa de organza.</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-2 flex justify-between items-center border-t border-white/5">
+                <span class="text-sm font-semibold text-amora-light">R$ 22.000</span>
+                <button class="text-[10px] tracking-widest uppercase border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black transition-all">Reservar</button>
+              </div>
+            </div>
+
+            <!-- Slot 1.5 -->
+            <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-[#070913] border border-white/10 rounded-sm overflow-hidden group/card hover:border-amora/50 transition-all duration-500 flex flex-col justify-between flex-shrink-0">
+              <div>
+                <div class="aspect-[3/4] overflow-hidden relative">
+                  <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=800&q=80" alt="Vestido Celestia" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700">
+                  <span class="absolute top-3 right-3 bg-black/80 text-[10px] tracking-widest uppercase px-3 py-1 border border-white/20 text-amora-light z-10">Em Estoque (2 un)</span>
+                </div>
+                <div class="p-5 space-y-2">
+                  <p class="text-[10px] tracking-widest text-amora uppercase">Coleção Galáxia</p>
+                  <h3 class="text-sm tracking-wider font-medium text-white uppercase">Vestido Celestia</h3>
+                  <p class="text-xs text-gray-400 font-light">Ombro a ombro estruturado em zibelina de seda.</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-2 flex justify-between items-center border-t border-white/5">
+                <span class="text-sm font-semibold text-amora-light">R$ 16.800</span>
+                <button class="text-[10px] tracking-widest uppercase border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black transition-all">Reservar</button>
+              </div>
+            </div>
+
+            <!-- Slot 1.6 -->
+            <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-[#070913] border border-white/10 rounded-sm overflow-hidden group/card hover:border-amora/50 transition-all duration-500 flex flex-col justify-between flex-shrink-0">
+              <div>
+                <div class="aspect-[3/4] overflow-hidden relative">
+                  <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80" alt="Tiara Cristal Nova" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700">
+                  <span class="absolute top-3 right-3 bg-black/80 text-[10px] tracking-widest uppercase px-3 py-1 border border-white/20 text-amora-light z-10">Em Estoque (4 un)</span>
+                </div>
+                <div class="p-5 space-y-2">
+                  <p class="text-[10px] tracking-widest text-amora uppercase">Acessórios Haute</p>
+                  <h3 class="text-sm tracking-wider font-medium text-white uppercase">Tiara Cristal Nova</h3>
+                  <p class="text-xs text-gray-400 font-light">Banho de platina com incrustação de microcristais.</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-2 flex justify-between items-center border-t border-white/5">
+                <span class="text-sm font-semibold text-amora-light">R$ 3.100</span>
+                <button class="text-[10px] tracking-widest uppercase border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black transition-all">Reservar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- LINHA 02: JOIAS & ACESSÓRIOS DE NOIVA -->
+      <div class="space-y-4">
+        <div class="px-8 sm:px-12 md:px-16 flex justify-between items-end border-b border-white/10 pb-3">
+          <h3 class="text-sm tracking-[0.3em] uppercase text-amora-light font-medium">Linha 02 — Joias & Acessórios Finais</h3>
+          <span class="text-[11px] text-gray-500 tracking-widest uppercase">6 Peças Selecionadas</span>
+        </div>
+
+        <div class="relative px-8 sm:px-12 md:px-16">
+          <!-- Botão Esquerdo Linha 02 -->
+          <button id="scroll-left-2" aria-label="Anterior Linha 2" class="absolute -left-3 sm:-left-6 md:-left-12 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 border border-white/20 bg-black/90 text-amora flex items-center justify-center hover:border-amora hover:scale-110 transition-all shadow-2xl backdrop-blur-md rounded-full group">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 stroke-current transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21l-1.5-4.5m1.5 4.5l1.5-4.5m-1.5 4.5v-4.5" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 12a3 3 0 100-6 3 3 0 000 6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 14a3 3 0 100-6 3 3 0 000 6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 14a3 3 0 100-6 3 3 0 000 6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12l-2 0m2-2l-2 2 2 2" />
+            </svg>
+          </button>
+
+          <!-- Botão Direito Linha 02 -->
+          <button id="scroll-right-2" aria-label="Próximo Linha 2" class="absolute -right-3 sm:-right-6 md:-right-12 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 border border-white/20 bg-black/90 text-amora flex items-center justify-center hover:border-amora hover:scale-110 transition-all shadow-2xl backdrop-blur-md rounded-full group">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 stroke-current transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21l-1.5-4.5m1.5 4.5l1.5-4.5m-1.5 4.5v-4.5" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 12a3 3 0 100-6 3 3 0 000 6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 14a3 3 0 100-6 3 3 0 000 6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 14a3 3 0 100-6 3 3 0 000 6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 12l2 0m-2-2l2 2-2 2" />
+            </svg>
+          </button>
+
+          <!-- Container Deslizante - Linha 2 -->
+          <div id="inventory-container-2" class="flex space-x-6 overflow-x-auto scroll-smooth no-scrollbar py-4">
+
+            <!-- Slot 2.1 -->
+            <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-[#070913] border border-white/10 rounded-sm overflow-hidden group/card hover:border-amora/50 transition-all duration-500 flex flex-col justify-between flex-shrink-0">
+              <div>
+                <div class="aspect-[3/4] overflow-hidden relative">
+                  <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80" alt="Brincos Gota de Diamante" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700">
+                  <span class="absolute top-3 right-3 bg-black/80 text-[10px] tracking-widest uppercase px-3 py-1 border border-white/20 text-amora-light z-10">Em Estoque (1 un)</span>
+                </div>
+                <div class="p-5 space-y-2">
+                  <p class="text-[10px] tracking-widest text-amora uppercase">Joalheria Fina</p>
+                  <h3 class="text-sm tracking-wider font-medium text-white uppercase">Brincos Gota Astral</h3>
+                  <p class="text-xs text-gray-400 font-light">Ouro branco 18k com gotas de diamantes cravejados.</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-2 flex justify-between items-center border-t border-white/5">
+                <span class="text-sm font-semibold text-amora-light">R$ 8.900</span>
+                <button class="text-[10px] tracking-widest uppercase border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black transition-all">Reservar</button>
+              </div>
+            </div>
+
+            <!-- Slot 2.2 -->
+            <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-[#070913] border border-white/10 rounded-sm overflow-hidden group/card hover:border-amora/50 transition-all duration-500 flex flex-col justify-between flex-shrink-0">
+              <div>
+                <div class="aspect-[3/4] overflow-hidden relative">
+                  <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80" alt="Colar Pérolas Cósmicas" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700">
+                  <span class="absolute top-3 right-3 bg-black/80 text-[10px] tracking-widest uppercase px-3 py-1 border border-white/20 text-amora-light z-10">Em Estoque (2 un)</span>
+                </div>
+                <div class="p-5 space-y-2">
+                  <p class="text-[10px] tracking-widest text-amora uppercase">Joalheria Fina</p>
+                  <h3 class="text-sm tracking-wider font-medium text-white uppercase">Colar Pérolas Cósmicas</h3>
+                  <p class="text-xs text-gray-400 font-light">Pérolas do Taiti com fecho em platina e zircônias.</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-2 flex justify-between items-center border-t border-white/5">
+                <span class="text-sm font-semibold text-amora-light">R$ 11.200</span>
+                <button class="text-[10px] tracking-widest uppercase border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black transition-all">Reservar</button>
+              </div>
+            </div>
+
+            <!-- Slot 2.3 -->
+            <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-[#070913] border border-white/10 rounded-sm overflow-hidden group/card hover:border-amora/50 transition-all duration-500 flex flex-col justify-between flex-shrink-0">
+              <div>
+                <div class="aspect-[3/4] overflow-hidden relative">
+                  <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80" alt="Sapato Noiva Cristal Starlight" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700">
+                  <span class="absolute top-3 right-3 bg-black/80 text-[10px] tracking-widest uppercase px-3 py-1 border border-white/20 text-amora-light z-10">Em Estoque (3 un)</span>
+                </div>
+                <div class="p-5 space-y-2">
+                  <p class="text-[10px] tracking-widest text-amora uppercase">Calçados Nupciais</p>
+                  <h3 class="text-sm tracking-wider font-medium text-white uppercase">Scarpin Starlight</h3>
+                  <p class="text-xs text-gray-400 font-light">Satin italiano com aplicação manual de microcristais.</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-2 flex justify-between items-center border-t border-white/5">
+                <span class="text-sm font-semibold text-amora-light">R$ 5.400</span>
+                <button class="text-[10px] tracking-widest uppercase border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black transition-all">Reservar</button>
+              </div>
+            </div>
+
+            <!-- Slot 2.4 -->
+            <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-[#070913] border border-white/10 rounded-sm overflow-hidden group/card hover:border-amora/50 transition-all duration-500 flex flex-col justify-between flex-shrink-0">
+              <div>
+                <div class="aspect-[3/4] overflow-hidden relative">
+                  <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80" alt="Anel Solitário Pulsar" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700">
+                  <span class="absolute top-3 right-3 bg-black/80 text-[10px] tracking-widest uppercase px-3 py-1 border border-white/20 text-amora-light z-10">Em Estoque (1 un)</span>
+                </div>
+                <div class="p-5 space-y-2">
+                  <p class="text-[10px] tracking-widest text-amora uppercase">Alta Joalheria</p>
+                  <h3 class="text-sm tracking-wider font-medium text-white uppercase">Solitário Pulsar</h3>
+                  <p class="text-xs text-gray-400 font-light">Platina pura com diamante central lapidação brilhante 2ct.</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-2 flex justify-between items-center border-t border-white/5">
+                <span class="text-sm font-semibold text-amora-light">R$ 34.000</span>
+                <button class="text-[10px] tracking-widest uppercase border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black transition-all">Reservar</button>
+              </div>
+            </div>
+
+            <!-- Slot 2.5 -->
+            <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-[#070913] border border-white/10 rounded-sm overflow-hidden group/card hover:border-amora/50 transition-all duration-500 flex flex-col justify-between flex-shrink-0">
+              <div>
+                <div class="aspect-[3/4] overflow-hidden relative">
+                  <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80" alt="Clutch Nupcial Eclipse" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700">
+                  <span class="absolute top-3 right-3 bg-black/80 text-[10px] tracking-widest uppercase px-3 py-1 border border-white/20 text-amora-light z-10">Em Estoque (2 un)</span>
+                </div>
+                <div class="p-5 space-y-2">
+                  <p class="text-[10px] tracking-widest text-amora uppercase">Bolsas Nupciais</p>
+                  <h3 class="text-sm tracking-wider font-medium text-white uppercase">Clutch Eclipse</h3>
+                  <p class="text-xs text-gray-400 font-light">Nácar madrepérola com fecho em banho de ouro e alça de corrente.</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-2 flex justify-between items-center border-t border-white/5">
+                <span class="text-sm font-semibold text-amora-light">R$ 6.100</span>
+                <button class="text-[10px] tracking-widest uppercase border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black transition-all">Reservar</button>
+              </div>
+            </div>
+
+            <!-- Slot 2.6 -->
+            <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-[#070913] border border-white/10 rounded-sm overflow-hidden group/card hover:border-amora/50 transition-all duration-500 flex flex-col justify-between flex-shrink-0">
+              <div>
+                <div class="aspect-[3/4] overflow-hidden relative">
+                  <img src="https://images.unsplash.com/photo-1611591475111-a8a25c156942?auto=format&fit=crop&w=800&q=80" alt="Pulseira Riviera Orbit" class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700">
+                  <span class="absolute top-3 right-3 bg-black/80 text-[10px] tracking-widest uppercase px-3 py-1 border border-white/20 text-amora-light z-10">Em Estoque (2 un)</span>
+                </div>
+                <div class="p-5 space-y-2">
+                  <p class="text-[10px] tracking-widest text-amora uppercase">Alta Joalheria</p>
+                  <h3 class="text-sm tracking-wider font-medium text-white uppercase">Pulseira Riviera Orbit</h3>
+                  <p class="text-xs text-gray-400 font-light">Riviera clássica articulada em ouro branco e brilhantes.</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-2 flex justify-between items-center border-t border-white/5">
+                <span class="text-sm font-semibold text-amora-light">R$ 15.600</span>
+                <button class="text-[10px] tracking-widest uppercase border border-white/30 px-3 py-1.5 hover:bg-white hover:text-black transition-all">Reservar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer / Inscrição -->
+    <footer class="py-24 px-6 text-center border-t border-white/5">
+      <div class="max-w-xl mx-auto space-y-8">
+        <!-- Título "Maison Λ M O R Λ" no Footer em tom de Amora -->
+        <h3 class="text-2xl tracking-[0.3em] uppercase font-light text-amora font-cinzel font-semibold">Maison Λ M O R Λ</h3>
+        <p class="text-xs tracking-widest text-gray-500 uppercase">Receba novidades exclusivas sobre Noivas e Alta Costura</p>
+        
+        <form class="flex flex-col sm:flex-row gap-4 justify-center" onsubmit="event.preventDefault();">
+          <input type="email" placeholder="SEU E-MAIL" class="bg-transparent border border-white/20 px-6 py-3 text-xs tracking-widest focus:outline-none focus:border-amora text-white w-full sm:w-72">
+          
+          <!-- Botão "Agendar Consulta" em tom Amora -->
+          <button type="submit" class="bg-amora text-white text-xs tracking-widest uppercase px-8 py-3 border border-amora/40 hover:bg-[#63123d] hover:border-amora-light transition-all shadow-amora">
+            Agendar Consulta
+          </button>
+        </form>
+
+        <div class="pt-12 text-[10px] tracking-widest text-gray-600 uppercase">
+          © <span class="text-amora">Λ M O R Λ</span> Bridal Concept — Curadoria de Moda
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Botão WhatsApp Pequeno e Compacto (Cor Amora) -->
+  <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20na%20Maison%20AMORA." 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     aria-label="Atendimento via WhatsApp"
+     class="fixed bottom-6 right-6 z-50 bg-amora text-white p-2.5 rounded-full border border-amora/30 shadow-amora hover:scale-110 hover:border-amora-light transition-all duration-300 group flex items-center justify-center">
+    
+    <!-- Indicador de Status Verde Pequeno -->
+    <span class="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 border border-black"></span>
+    </span>
+
+    <!-- Ícone do WhatsApp -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+  </a>
+
+  <!-- Scripts: Parallax do Hero, Rolagem dos Carrosséis & Menu Mobile -->
+  <script>
+    // Controle do Menu Mobile (Hambúrguer)
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    function toggleMobileMenu() {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      if (isOpen) {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      } else {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('flex');
+        hamburgerIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (!mobileMenu.classList.contains('hidden')) {
+          toggleMobileMenu();
+        }
+      });
+    });
+
+    // Animação de Parallax do Hero
+    const heroBg = document.getElementById('hero-bg');
+    const heroContent = document.getElementById('hero-content');
+    const scrollIndicator = document.getElementById('scroll-indicator');
+    const heroWrapper = document.getElementById('hero-wrapper');
+
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY;
+      const wrapperHeight = heroWrapper.offsetHeight - window.innerHeight;
+      
+      if (scrollPos <= wrapperHeight) {
+        const progress = Math.min((scrollPos / wrapperHeight) * 1.5, 1);
+        
+        const scale = 1 + (progress * 0.2);
+        const opacity = 0.6 - (progress * 0.5);
+        
+        const textOffsetY = progress * -120;
+        const textOpacity = 1 - (progress * 2.2);
+
+        heroBg.style.transform = `scale(${scale})`;
+        heroBg.style.opacity = Math.max(opacity, 0.05);
+
+        heroContent.style.transform = `translateY(${textOffsetY}px)`;
+        heroContent.style.opacity = Math.max(textOpacity, 0);
+
+        scrollIndicator.style.opacity = Math.max(1 - progress * 4, 0);
+      }
+    });
+
+    // Controle do Carrossel — Linha 01
+    const container1 = document.getElementById('inventory-container-1');
+    const btnLeft1 = document.getElementById('scroll-left-1');
+    const btnRight1 = document.getElementById('scroll-right-1');
+
+    btnLeft1.addEventListener('click', () => {
+      container1.scrollBy({ left: -340, behavior: 'smooth' });
+    });
+
+    btnRight1.addEventListener('click', () => {
+      container1.scrollBy({ left: 340, behavior: 'smooth' });
+    });
+
+    // Controle do Carrossel — Linha 02
+    const container2 = document.getElementById('inventory-container-2');
+    const btnLeft2 = document.getElementById('scroll-left-2');
+    const btnRight2 = document.getElementById('scroll-right-2');
+
+    btnLeft2.addEventListener('click', () => {
+      container2.scrollBy({ left: -340, behavior: 'smooth' });
+    });
+
+    btnRight2.addEventListener('click', () => {
+      container2.scrollBy({ left: 340, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
